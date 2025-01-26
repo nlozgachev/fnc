@@ -8,14 +8,29 @@ import (
 	"runtime"
 )
 
+type BranchConfig struct {
+	Prefix  string `json:"prefix"`
+	Default string `json:"default"`
+}
+
+type CommitConfig struct {
+	NoVerify bool `json:"noVerify"`
+}
+
 type Config struct {
-	Prefix        string `json:"prefix"`
-	DefaultBranch string `json:"defaultBranch"`
+	Branch BranchConfig `json:"branch"`
+	Commit CommitConfig `json:"commit"`
 }
 
 func GetConfig() (Config, error) {
 	defaultConfig := Config{
-		Prefix: "",
+		Branch: BranchConfig{
+			Prefix:  "",
+			Default: "",
+		},
+		Commit: CommitConfig{
+			NoVerify: false,
+		},
 	}
 
 	configDir := getConfigDir()

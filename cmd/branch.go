@@ -24,9 +24,9 @@ func (cmd *BranchCommand) Execute(args []string) error {
 	taskType := internal.GetNumericChoice(reader, internal.TaskTypes)
 	taskID := getTaskID(reader)
 	description := getDescription(reader)
-	prefix := cmd.ctx.config.Prefix
+	prefix := cmd.ctx.config.Branch.Prefix
 	newBranchName := getNewBranchName(taskType, prefix, taskID, description)
-	defaultSourceBranch := internal.GetSourceBranchName(cmd.ctx.config.DefaultBranch)
+	defaultSourceBranch := internal.GetSourceBranchName(cmd.ctx.config.Branch.Default)
 	internal.CreateNewBranch(newBranchName, defaultSourceBranch)
 
 	return nil

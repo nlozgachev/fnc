@@ -1,4 +1,9 @@
 {
-  "prefix": "ABC",
-  "defaultBranch": "develop"
+  "branch": {
+    "prefix": "ABC",
+    "default": "develop"
+  },
+  "commit": {
+    "noVerify": true
+  }
 }

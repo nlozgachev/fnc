@@ -22,11 +22,16 @@ func CreateNewBranch(newBranch string, sourceBranch string) {
 	fmt.Printf("Branch \"%s\" created from \"%s\"\n", newBranch, sourceBranch)
 }
 
-func CreateCommit(fullCommitMessage string, commitBody string) {
+func CreateCommit(fullCommitMessage string, commitBody string, noVerify bool) {
 	commitCmd := exec.Command("git", "commit", "-m", fullCommitMessage)
 	if commitBody != "" {
 		commitCmd.Args = append(commitCmd.Args, "-m", commitBody)
 	}
+
+	if noVerify {
+		commitCmd.Args = append(commitCmd.Args, "--no-verify")
+	}
+
 	commitCmd.Stdout = os.Stdout
 	commitCmd.Stderr = os.Stderr
 

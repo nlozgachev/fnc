@@ -27,7 +27,8 @@ func (cmd *CommitCommand) Execute(args []string) error {
 	taskID := internal.ExtractTaskIDFromBranch()
 	fullCommitMessage := assembleCommitMessage(commitType, commitMessage, taskID)
 
-	internal.CreateCommit(fullCommitMessage, commitBody)
+	commitNoVerify := cmd.ctx.config.Commit.NoVerify
+	internal.CreateCommit(fullCommitMessage, commitBody, commitNoVerify)
 
 	return nil
 }
