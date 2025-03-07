@@ -3,7 +3,7 @@ package internal
 import "regexp"
 
 func ExtractBranchPrefix(branchName string) string {
-	re := regexp.MustCompile(`([A-Z]+-\d+)_.*$`)
+	re := regexp.MustCompile(`([A-Z]+-\d+).*$`)
 	matches := re.FindStringSubmatch(branchName)
 
 	if len(matches) > 1 {
